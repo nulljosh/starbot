@@ -6,6 +6,36 @@
 export class StarbotAPI {
   constructor() {
     this.baseURL = 'https://www.starbucks.ca';
+    this.token = null;
+    this.userInfo = null;
+  }
+
+  /**
+   * Login to Starbucks account
+   * @param {string} email - Account email
+   * @param {string} password - Account password
+   */
+  async login(email, password) {
+    // Real implementation would authenticate with Starbucks API
+    this.token = 'mock_auth_token_' + Date.now();
+    this.userInfo = {
+      email,
+      name: 'Joshua Trommel',
+      cardNumber: '1234567890123456',
+      balance: 25.50,
+      rewards: 120
+    };
+    return this.userInfo;
+  }
+
+  /**
+   * Get current user info (requires login)
+   */
+  async getUserInfo() {
+    if (!this.token) {
+      throw new Error('Not authenticated. Call login() first.');
+    }
+    return this.userInfo;
   }
 
   /**
@@ -15,15 +45,24 @@ export class StarbotAPI {
    */
   async stores(address, limit = 10) {
     // Note: Real implementation would use Starbucks store locator API
-    // For now, returning mock data structure
+    // Mock data based on actual Brookswood/Langley locations
     return {
       stores: [
         {
           id: '12345',
-          name: 'Starbucks - Willowbrook',
+          name: 'Starbucks - Save-On-Foods (200 St)',
+          address: '4061 200 St, Langley, BC V3A 1K8',
+          distance: '0.1 km',
+          hours: 'Mon-Sun 6:00am-8:00pm',
+          phone: '604-534-1234',
+          features: ['Mobile Order', 'WiFi']
+        },
+        {
+          id: '12346',
+          name: 'Starbucks - Willowbrook Mall',
           address: '19705 Fraser Hwy, Langley, BC',
           distance: '2.3 km',
-          hours: 'Mon-Sun 6:00am-9:00pm',
+          hours: 'Mon-Sun 7:00am-9:00pm',
           phone: '604-532-4567',
           features: ['Mobile Order', 'Drive-Thru', 'WiFi']
         }
