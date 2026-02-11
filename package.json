@@ -1,0 +1,10 @@
+{
+  "name": "starbot",
+  "version": "1.0.0",
+  "description": "Unofficial Starbucks API for Node.js",
+  "type": "module",
+  "main": "starbot.js",
+  "keywords": ["starbucks", "coffee", "api"],
+  "author": "Joshua Trommel",
+  "license": "MIT"
+}
